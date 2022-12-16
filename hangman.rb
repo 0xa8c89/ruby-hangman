@@ -14,7 +14,7 @@ wrong_guesses = []
 
 until word.split('') == unknown
   print 'Enter your guess: '
-  input = gets.chomp
+  input = gets.chomp.downcase
   if wrong_guesses.include?(input) || right_guesses.include?(input)
     puts "Letter '#{input}' has already been tried. Try again."
     next
@@ -23,15 +23,14 @@ until word.split('') == unknown
   word.split('').each_with_index do |letter, idx|
     unknown[idx] = input if letter == input
   end
-  right_guesses << input if word.include?(input)
-  wrong_guesses << input unless word.include?(input)
+  word.include?(input) ? right_guesses << input : wrong_guesses << input
 
   puts "#{wrong_guesses.length} wrong guesses - #{wrong_guesses.join(', ')}"
   puts "#{right_guesses.length} correct guesses - #{right_guesses.join(', ')}"
   puts unknown.join(' ')
 
   if wrong_guesses.length == 7
-    puts 'You lost!'
+    puts "You lost! The word was \"#{word}\""
     break
   end
   if word.split('') == unknown
