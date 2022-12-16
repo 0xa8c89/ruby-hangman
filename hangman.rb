@@ -1,4 +1,3 @@
-
 require 'json'
 
 # TODO; Finish exc 6 and classify this spaghetti
