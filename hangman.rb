@@ -1,3 +1,4 @@
+
 require 'json'
 
 # TODO; Finish exc 6 and classify this spaghetti
@@ -41,13 +42,6 @@ if continue_input == 'y' || continue_input == 'yes'
 end
 
 until word.split('') == unknown
-  print 'Do you want to save progress and quit? (y/n) '
-  save_input = gets.chomp.downcase
-  if save_input == 'y' || save_input == 'yes'
-    save_file(word, unknown, right_guesses, wrong_guesses)
-    break
-  end
-
   print 'Enter your guess: '
   input = gets.chomp.downcase
   while wrong_guesses.include?(input) || right_guesses.include?(input)
@@ -71,6 +65,13 @@ until word.split('') == unknown
   end
   if word.split('') == unknown
     puts 'You won!'
+    break
+  end
+
+  print 'Do you want to save progress and quit? (y/n) '
+  save_input = gets.chomp.downcase
+  if save_input == 'y' || save_input == 'yes'
+    save_file(word, unknown, right_guesses, wrong_guesses)
     break
   end
 end
